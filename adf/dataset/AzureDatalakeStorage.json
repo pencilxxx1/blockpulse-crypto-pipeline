@@ -1,0 +1,21 @@
+{
+	"name": "AzureDatalakeStorage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeLinkService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "data.json",
+				"folderPath": "year=2025/month=10/day=04",
+				"fileSystem": "crypto-bronze"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

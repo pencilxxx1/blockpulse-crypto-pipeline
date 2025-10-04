@@ -1,0 +1,111 @@
+{
+	"name": "crypto_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data From Coingecko",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"filePattern": "arrayOfObjects"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "CoingeckoRestAPI",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureDatalakeStorage",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Bronze To Silver Layer",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Copy Data From Coingecko",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/crypto-pipeline/bronze_to_silver"
+				},
+				"linkedServiceName": {
+					"referenceName": "bronze_to_silver_databricks_linkservice",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Silver To Gold Layer",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Bronze To Silver Layer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Shared/crypto-pipeline/silver_to_gold"
+				},
+				"linkedServiceName": {
+					"referenceName": "silver_to_gold_databricks_linkservice",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-10-04T02:55:10Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
