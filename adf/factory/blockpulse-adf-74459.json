@@ -1,0 +1,9 @@
+{
+	"name": "blockpulse-adf-74459",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1bbf5e6a-cf9c-48a6-b782-82f57c9464ab",
+		"tenantId": "0c58acc0-bcd0-4d37-8c72-64c92bdac3cb"
+	}
+}

@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "blockpulse-adf-74459"
+		},
+		"AzureDataLakeLinkService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeLinkService'"
+		},
+		"bronze_to_silver_databricks_linkservice_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'bronze_to_silver_databricks_linkservice'"
+		},
+		"silver_to_gold_databricks_linkservice_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'silver_to_gold_databricks_linkservice'"
+		},
+		"AzureDataLakeLinkService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://blockpulsest73150.dfs.core.windows.net/"
+		},
+		"CoingeckoRestLinkService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=200"
+		},
+		"bronze_to_silver_databricks_linkservice_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1001-171937-mkql8shf"
+		},
+		"silver_to_gold_databricks_linkservice_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1003-234956-g3gx6iap"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "blockpulse-adf-74459_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeLinkService_accountKey": {
+						"value": "[parameters('AzureDataLakeLinkService_accountKey')]"
+					},
+					"bronze_to_silver_databricks_linkservice_accessToken": {
+						"value": "[parameters('bronze_to_silver_databricks_linkservice_accessToken')]"
+					},
+					"silver_to_gold_databricks_linkservice_accessToken": {
+						"value": "[parameters('silver_to_gold_databricks_linkservice_accessToken')]"
+					},
+					"AzureDataLakeLinkService_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeLinkService_properties_typeProperties_url')]"
+					},
+					"CoingeckoRestLinkService_properties_typeProperties_url": {
+						"value": "[parameters('CoingeckoRestLinkService_properties_typeProperties_url')]"
+					},
+					"bronze_to_silver_databricks_linkservice_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('bronze_to_silver_databricks_linkservice_properties_typeProperties_existingClusterId')]"
+					},
+					"silver_to_gold_databricks_linkservice_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('silver_to_gold_databricks_linkservice_properties_typeProperties_existingClusterId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
