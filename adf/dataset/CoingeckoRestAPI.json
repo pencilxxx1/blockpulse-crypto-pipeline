@@ -1,0 +1,13 @@
+{
+	"name": "CoingeckoRestAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CoingeckoRestLinkService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

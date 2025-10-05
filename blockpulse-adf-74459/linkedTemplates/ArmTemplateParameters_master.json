@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "blockpulse-adf-74459"
+		},
+		"AzureDataLakeLinkService_accountKey": {
+			"value": ""
+		},
+		"bronze_to_silver_databricks_linkservice_accessToken": {
+			"value": ""
+		},
+		"silver_to_gold_databricks_linkservice_accessToken": {
+			"value": ""
+		},
+		"AzureDataLakeLinkService_properties_typeProperties_url": {
+			"value": "https://blockpulsest73150.dfs.core.windows.net/"
+		},
+		"CoingeckoRestLinkService_properties_typeProperties_url": {
+			"value": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=200"
+		},
+		"bronze_to_silver_databricks_linkservice_properties_typeProperties_existingClusterId": {
+			"value": "1001-171937-mkql8shf"
+		},
+		"silver_to_gold_databricks_linkservice_properties_typeProperties_existingClusterId": {
+			"value": "1003-234956-g3gx6iap"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
