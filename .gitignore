@@ -1,0 +1,44 @@
+# Secrets and credentials
+.env
+*.key
+*.pem
+secrets/
+config/credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Databricks
+.databricks/
+*.dbc
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Azure
+local.settings.json
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/

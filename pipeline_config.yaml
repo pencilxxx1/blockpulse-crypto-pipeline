@@ -1,0 +1,30 @@
+# Pipeline Configuration
+pipeline:
+  name: "BlockPulse Crypto Data Pipeline"
+  version: "1.0.0"
+  
+api:
+  coingecko:
+    base_url: "https://api.coingecko.com/api/v3"
+    endpoint: "/coins/markets"
+    per_page: 250
+    vs_currency: "usd"
+    rate_limit_per_minute: 10
+
+storage:
+  partitioning:
+    bronze: "year/month/day"
+    silver: "silver_processing_date"
+    gold: "date_key"
+  
+data_quality:
+  thresholds:
+    high_volatility_pct: 10
+    min_market_cap: 1000000
+    max_null_percentage: 5
+
+market_cap_categories:
+  large_cap: 10000000000  # $10B+
+  mid_cap: 1000000000     # $1B - $10B
+  small_cap: 100000000    # $100M - $1B
+  micro_cap: 0            # < $100M
