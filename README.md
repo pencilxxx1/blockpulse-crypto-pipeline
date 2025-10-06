@@ -1,6 +1,6 @@
 # BlockPulse Crypto Data Pipeline
 
-A production-ready data pipeline for extracting, transforming, and analyzing cryptocurrency market data from CoinGecko API using Azure Data Factory and Databricks.
+A production-ready data pipeline for extracting, transforming, and analyzing cryptocurrency market data from CoinGecko API using Azure Data Factory and Databricks with pyspark.
 
 ## Architecture Overview
 
